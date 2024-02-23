@@ -1,0 +1,48 @@
+.deep-scroll {
+    overflow: hidden; /* Masquer les éléments débordants */
+  }
+  
+  .carousel-container {
+    display: flex;
+    transition: transform 0.5s ease; /* Animation de transition fluide */
+  }
+  
+  .page {
+    flex: 0 0 100%; /* Ajuster la largeur de chaque page à 100% */
+  }
+  
+  .content {
+    height: 100vh; /* Ajuster la hauteur de chaque page à la hauteur de la vue */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  /* Définir les couleurs de fond pour chaque page */
+  .page:nth-child(1) {
+    background-color: #ffcccc; /* Rouge clair */
+  }
+  
+  .page:nth-child(2) {
+    background-color: #ccffcc; /* Vert clair */
+  }
+  
+  .page:nth-child(3) {
+    background-color: #ccccff; /* Bleu clair */
+  }
+  
+  .page:nth-child(4) {
+    background-color: #ffffcc; /* Jaune clair */
+  }
+  
+  .page:nth-child(5) {
+    background-color: #ffccff; /* Rose clair */
+  }
+  
+  @keyframes immerse {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

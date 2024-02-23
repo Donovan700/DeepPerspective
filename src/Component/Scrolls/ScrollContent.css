@@ -1,0 +1,10 @@
+.colored-item {
+    background-color: lightblue; /* Changez la couleur de fond selon vos préférences */
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+  }
+  .full-height {
+    height: 100vh; /* Hauteur de la fenêtre */
+  }
+  

@@ -1,31 +1,36 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import "./DeepScroll.css"; // Assurez-vous d'importer les styles CSS nécessaires
 
-const DeepScroll = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+interface DeepScrollProps {
+  data: string[];
+}
 
-  const scrollToBottom = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
-    }
-  };
+const DeepScroll: React.FC<DeepScrollProps> = ({ data }) => {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
-  const scrollToTop = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = 0;
-    }
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Calculer le numéro de page suivant
+      const nextPage = (currentPage + 1) % data.length;
+      setCurrentPage(nextPage);
+    }, 1000); // Changer de page toutes les 1 seconde
+
+    return () => {
+      clearInterval(interval); // Nettoyer l'intervalle lors du démontage du composant
+    };
+  }, [currentPage, data.length]);
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="scroll-container" ref={scrollContainerRef}>
-        <div className="scroll-item">
-          <h1>Hello</h1>
-          <h1>Pandas</h1>
-        </div>
-      </div>
-      <div className="scroll-controls">
-        <button onClick={scrollToTop}>Défiler en haut</button>
-        <button onClick={scrollToBottom}>Défiler en bas</button>
+    <div className="deep-scroll">
+      <div className="carousel-container" ref={carouselRef}>
+        {data.map((item, index) => (
+          <div key={index} className={`page ${currentPage === index ? 'active' : ''}`}>
+            <div className="content">
+              {item}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

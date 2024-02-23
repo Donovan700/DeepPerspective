@@ -2,8 +2,10 @@ import './App.css';
 import DeepScroll from './Component/DeepScroll';
 
 function App() {
+  const data = ["Pandas", "Grizzlies", "Rabbit", "Autruche", "Kangourou"];
+
   return (
-    <DeepScroll/>
+    <DeepScroll data={data} />
   );
 }
 
